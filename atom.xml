@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.github.io/atom.xml" rel="self"/>
   <link href="http://devsay.github.io/"/>
-  <updated>2014-09-03T19:53:29+08:00</updated>
+  <updated>2014-09-03T20:21:38+08:00</updated>
   <id>http://devsay.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[devsay]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[新起点]]></title>
+    <link href="http://devsay.github.io/blog/2014/09/03/preface/"/>
+    <updated>2014-09-03T20:05:33+08:00</updated>
+    <id>http://devsay.github.io/blog/2014/09/03/preface</id>
+    <content type="html"><![CDATA[<p>开发者说今天正式扬帆起航。新起点、新梦想、新挑战。</p>
+]]></content>
+  </entry>
   
 </feed>

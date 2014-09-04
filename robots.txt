@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://devsay.github.io/sitemap.xml 
+Sitemap: http://www.devsay.com/sitemap.xml 

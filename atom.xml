@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[开发者说]]></title>
-  <link href="http://devsay.github.io/atom.xml" rel="self"/>
-  <link href="http://devsay.github.io/"/>
-  <updated>2014-09-09T14:49:59+08:00</updated>
-  <id>http://devsay.github.io/</id>
+  <link href="http://devsay.com/atom.xml" rel="self"/>
+  <link href="http://devsay.com/"/>
+  <updated>2014-09-10T15:23:35+08:00</updated>
+  <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CocoaPods]]></title>
-    <link href="http://devsay.github.io/blog/2014/09/04/cocoapods/"/>
+    <link href="http://devsay.com/blog/2014/09/04/cocoapods/"/>
     <updated>2014-09-04T15:53:50+08:00</updated>
-    <id>http://devsay.github.io/blog/2014/09/04/cocoapods</id>
+    <id>http://devsay.com/blog/2014/09/04/cocoapods</id>
     <content type="html"><![CDATA[<p>在做iOS项目开发时，大量的第三方库极大的提高了我们的开发效率。随着功能的不断增加，工程变得越来越庞大，使用到的第三方库也越来越多，这时第三方库管理工具CocoaPods的重要性就凸显出来了。在第三方库的引入、升级、依赖关系上，CocoaPods让一切变得简单。
 1.安装
 安装CocoaPods依赖Ruby环境
@@ -37,9 +37,9 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
   
   <entry>
     <title type="html"><![CDATA[新起点]]></title>
-    <link href="http://devsay.github.io/blog/2014/09/03/preface/"/>
+    <link href="http://devsay.com/blog/2014/09/03/preface/"/>
     <updated>2014-09-03T20:05:33+08:00</updated>
-    <id>http://devsay.github.io/blog/2014/09/03/preface</id>
+    <id>http://devsay.com/blog/2014/09/03/preface</id>
     <content type="html"><![CDATA[<p>开发者说今天正式扬帆起航。新起点、新梦想、新挑战。</p>
 ]]></content>
   </entry>

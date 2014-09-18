@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-09-12T20:25:56+08:00</updated>
+  <updated>2014-09-18T10:33:38+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fatal Error: File Has Been Modified Since the Precompiled Header]]></title>
+    <link href="http://devsay.com/blog/2014/09/18/precompiled-header/"/>
+    <updated>2014-09-18T10:20:28+08:00</updated>
+    <id>http://devsay.com/blog/2014/09/18/precompiled-header</id>
+    <content type="html"><![CDATA[<p>编译工程时，报错</p>
+
+<p>fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioSession.h&rsquo; has been modified since the precompiled header &lsquo;/Users/Mac/Library/Developer/Xcode/DerivedData/xxx-frlhxpamlowshtayyttcuivhpzcw/Build/Intermediates/PrecompiledHeaders/xxx-Prefix-Debug-dmssclbwyzjgywetcgfenqhmlpdi/Paopao-Prefix-Debug.pch.pch&rsquo; was built</p>
+
+<p>xxx表示工程名称</p>
+
+<p>仔细查找原因，发现是不小心改动了AVAudioSession.h这个头文件导致的</p>
+
+<p>解决办法：</p>
+
+<p>1.Product->Clean</p>
+
+<p>2.删除~/Library/Developer/Xcode/DeriveData/下所有文件</p>
+
+<p>重新编译，成功。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iPhone6分辨率适配]]></title>

@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iPhone6分辨率适配 - 开发者说</title>
+  <title>Fatal Error: File Has Been Modified Since the Precompiled Header - 开发者说</title>
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。 先看苹果历代iPhone公布的分辨率及ppi
-iPhone6 Plus: 1920x1080, &hellip;">
+  <meta name="description" content="编译工程时，报错 fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ iPhone6 Plus: 1920x1080, &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devsay.com/blog/2014/09/12/iphone6-screen">
+  <link rel="canonical" href="http://devsay.com/blog/2014/09/18/precompiled-header">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="开发者说" type="application/atom+xml">
@@ -69,7 +68,7 @@ iPhone6 Plus: 1920x1080, &hellip;">
   
   <header>
     
-      <h1 class="entry-title">iPhone6分辨率适配</h1>
+      <h1 class="entry-title">Fatal Error: File Has Been Modified Since the Precompiled Header</h1>
     
     
       <p class="meta">
@@ -78,30 +77,28 @@ iPhone6 Plus: 1920x1080, &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
+<time class='entry-date' datetime='2014-09-18T10:20:28+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:20 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。</p>
+<div class="entry-content"><p>编译工程时，报错</p>
 
-<p>先看苹果历代iPhone公布的分辨率及ppi
-iPhone6 Plus: 1920x1080, 401 ppi
-iPhone6: 1334x750, 326 ppi
-iPhone5s: 1136x640, 326 ppi
-iPhone4：960x640, 326 ppi</p>
+<p>fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioSession.h&rsquo; has been modified since the precompiled header &lsquo;/Users/Mac/Library/Developer/Xcode/DerivedData/xxx-frlhxpamlowshtayyttcuivhpzcw/Build/Intermediates/PrecompiledHeaders/xxx-Prefix-Debug-dmssclbwyzjgywetcgfenqhmlpdi/Paopao-Prefix-Debug.pch.pch&rsquo; was built</p>
 
-<p>iPhone6与iPhone4，iPhone5s的ppi是一样的</p>
+<p>xxx表示工程名称</p>
 
-<p>iPhone6 Plus准确尺寸: 1242x2208</p>
+<p>仔细查找原因，发现是不小心改动了AVAudioSession.h这个头文件导致的</p>
 
-<p>Points做iOS开发时, 我们使用的是Points, 系统会将Points整数倍处理光栅化为Rendered Pixels, 再将Rendered Pixel转换成Physical Pixels在屏幕上显示出来。
-320x480点坐标系经过2x渲染之后的Rendered Pixels为640x960
-iPhone6: 375x667点坐标系经过2x渲染之后的Rendered Pixels为750x1334
-iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x2208
-但是iPhone6 Plus实际分辨率为1080x1920，在Rendered Pixel会进行降低采样率的处理来显示在物理设备上。</p>
+<p>解决办法：</p>
+
+<p>1.Product->Clean</p>
+
+<p>2.删除~/Library/Developer/Xcode/DeriveData/下所有文件</p>
+
+<p>重新编译，成功。</p>
 </div>
 
 
@@ -117,7 +114,7 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
 
 
 
-<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
+<time class='entry-date' datetime='2014-09-18T10:20:28+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:20 am</span></time>
       
 
 
@@ -136,10 +133,8 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/09/04/cocoapods/" title="Previous Post: CocoaPods">&laquo; CocoaPods</a>
+        <a class="basic-alignment left" href="/blog/2014/09/12/iphone6-screen/" title="Previous Post: iPhone6分辨率适配">&laquo; iPhone6分辨率适配</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/09/18/precompiled-header/" title="Next Post: fatal error: file has been modified since the precompiled header">fatal error: file has been modified since the precompiled header &raquo;</a>
       
     </p>
   </footer>
@@ -150,7 +145,7 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
 
   <section>
    <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/blog/2014/09/12/iphone6-screen" data-title="iPhone6分辨率适配" data-url="http://devsay.com/blog/2014/09/12/iphone6-screen/"></div>
+	<div class="ds-thread" data-thread-key="/blog/2014/09/18/precompiled-header" data-title="fatal error: file has been modified since the precompiled header" data-url="http://devsay.com/blog/2014/09/18/precompiled-header/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

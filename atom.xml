@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-09-18T10:36:08+08:00</updated>
+  <updated>2014-09-18T12:40:58+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -32,7 +32,12 @@
 
 <p>2.删除~/Library/Developer/Xcode/DeriveData/下所有文件</p>
 
-<p>重新编译，成功。</p>
+<p>重新编译，成功。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/18/precompiled-header/'><a href="http://devsay.com/blog/2014/09/18/precompiled-header/">http://devsay.com/blog/2014/09/18/precompiled-header/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
 ]]></content>
   </entry>
   
@@ -58,6 +63,14 @@ iPhone4：960x640, 326 ppi</p>
 iPhone6: 375x667点坐标系经过2x渲染之后的Rendered Pixels为750x1334
 iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x2208
 但是iPhone6 Plus实际分辨率为1080x1920，在Rendered Pixel会进行降低采样率的处理来显示在物理设备上。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/12/iphone6-screen/'>http://devsay.com/blog/2014/09/12/iphone6-screen/</a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -79,7 +92,12 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
 
 <p>pod install
 安装完成后，在工程的主目录中生成一个工程名对应的.xcworkspace文件，以后就使用这个文件来打开工程。
-以后在需要往工程中添加第三方库时，先编辑Podfile文件，然后执行pod update.</p>
+以后在需要往工程中添加第三方库时，先编辑Podfile文件，然后执行pod update.<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/04/cocoapods/'><a href="http://devsay.com/blog/2014/09/04/cocoapods/">http://devsay.com/blog/2014/09/04/cocoapods/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
 ]]></content>
   </entry>
   
@@ -88,7 +106,12 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
     <link href="http://devsay.com/blog/2014/09/03/preface/"/>
     <updated>2014-09-03T20:05:33+08:00</updated>
     <id>http://devsay.com/blog/2014/09/03/preface</id>
-    <content type="html"><![CDATA[<p>开发者说今天正式扬帆起航。新起点、新梦想、新挑战。</p>
+    <content type="html"><![CDATA[<p>开发者说今天正式扬帆起航。新起点、新梦想、新挑战。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/03/preface/'><a href="http://devsay.com/blog/2014/09/03/preface/">http://devsay.com/blog/2014/09/03/preface/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
 ]]></content>
   </entry>
   

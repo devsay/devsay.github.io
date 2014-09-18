@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-09-18T10:33:38+08:00</updated>
+  <updated>2014-09-18T10:36:08+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -20,7 +20,7 @@
     <id>http://devsay.com/blog/2014/09/18/precompiled-header</id>
     <content type="html"><![CDATA[<p>编译工程时，报错</p>
 
-<p>fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioSession.h&rsquo; has been modified since the precompiled header &lsquo;/Users/Mac/Library/Developer/Xcode/DerivedData/xxx-frlhxpamlowshtayyttcuivhpzcw/Build/Intermediates/PrecompiledHeaders/xxx-Prefix-Debug-dmssclbwyzjgywetcgfenqhmlpdi/Paopao-Prefix-Debug.pch.pch&rsquo; was built</p>
+<p>fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioSession.h&rsquo; has been modified since the precompiled header &lsquo;/Users/Mac/Library/Developer/Xcode/DerivedData/xxx-frlhxpamlowshtayyttcuivhpzcw/Build/Intermediates/PrecompiledHeaders/xxx-Prefix-Debug-dmssclbwyzjgywetcgfenqhmlpdi/xxx-Prefix-Debug.pch.pch&rsquo; was built</p>
 
 <p>xxx表示工程名称</p>
 

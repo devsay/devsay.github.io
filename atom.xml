@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-09-18T12:40:58+08:00</updated>
+  <updated>2014-09-20T18:29:13+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS语音合成(TTS)]]></title>
+    <link href="http://devsay.com/blog/2014/09/20/ios-tts/"/>
+    <updated>2014-09-20T18:20:19+08:00</updated>
+    <id>http://devsay.com/blog/2014/09/20/ios-tts</id>
+    <content type="html"><![CDATA[<p>在iOS开发当中，我们经常需要用到TTS(Text To Speech，将文本合成为语音)功能</p>
+
+<p>实现这种方案有两种情况：</p>
+
+<p>1.本地实现；</p>
+
+<p>2.网络实现。</p>
+
+<p>目前的解决方案：</p>
+
+<p>1.AVSpeechSynthesizer</p>
+
+<p>AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];</p>
+
+<p>synthesizer.delegate = self;</p>
+
+<p>AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@&ldquo;en&rdquo;];</p>
+
+<p>AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@&ldquo;This is a test&rdquo;];</p>
+
+<p>utterance.rate *= 0.5;</p>
+
+<p>utterance.voice = voice;</p>
+
+<p>[synthesizer speakUtterance:utterance];</p>
+
+<p>优点：调用iOS自带语音库，不需要单独往工程中添加语音包，有利于控制包的大小；</p>
+
+<p>缺点：对中文语音支持的不是很好，在语音的音质、断句方面不够理想。</p>
+
+<p>2.第三方语音：百度语音、讯飞语音</p>
+
+<p>国内讯飞做得比较早，技术各方面比较成熟，支持的平台多，相比其它第三方有明显的优势。</p>
+
+<p>百度语音出来的比较晚，对技术支持方面不完善，不过感觉音色方面比讯飞好。</p>
+
+<p>不过讯飞和百度目前只支持在线合成。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/20/ios-tts/'><a href="http://devsay.com/blog/2014/09/20/ios-tts/">http://devsay.com/blog/2014/09/20/ios-tts/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fatal Error: File Has Been Modified Since the Precompiled Header]]></title>

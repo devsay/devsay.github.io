@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iPhone6分辨率适配 - 开发者说</title>
+  <title>Ios8 定位服务 - 开发者说</title>
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。 先看苹果历代iPhone公布的分辨率及ppi
-iPhone6 Plus: 1920x1080, &hellip;">
-  <meta name="keywords" content="iOS,iPhone6,屏幕,适配,ppi,光栅化,分辨率">
+  <meta name="description" content="笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。 iOS8对定位服务做了修改，需要在info.plist增加一项：
+NSLocationWhenInUseUsageDescription &hellip;">
+  <meta name="keywords" content="iOS8,XCode6,CLLocationManager,定位服务">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -19,7 +19,7 @@ iPhone6 Plus: 1920x1080, &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devsay.com/blog/2014/09/12/iphone6-screen">
+  <link rel="canonical" href="http://devsay.com/blog/2014/09/28/ios8-location">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="开发者说" type="application/atom+xml">
@@ -69,7 +69,7 @@ iPhone6 Plus: 1920x1080, &hellip;">
   
   <header>
     
-      <h1 class="entry-title">iPhone6分辨率适配</h1>
+      <h1 class="entry-title">Ios8 定位服务</h1>
     
     
       <p class="meta">
@@ -78,38 +78,25 @@ iPhone6 Plus: 1920x1080, &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
+<time class='entry-date' datetime='2014-09-28T21:50:25+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:50 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。</p>
+<div class="entry-content"><p>笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。</p>
 
-<p>先看苹果历代iPhone公布的分辨率及ppi
-iPhone6 Plus: 1920x1080, 401 ppi
-iPhone6: 1334x750, 326 ppi
-iPhone5s: 1136x640, 326 ppi
-iPhone4：960x640, 326 ppi</p>
+<p>iOS8对定位服务做了修改，需要在info.plist增加一项：
+NSLocationWhenInUseUsageDescription 这里可以自定义对用户的提示。
+重新编译时，系统就会提示用户是否允许App启用定位服务。</p>
 
-<p>iPhone6与iPhone4，iPhone5s的ppi是一样的</p>
-
-<p>iPhone6 Plus准确尺寸: 1242x2208</p>
-
-<p>Points做iOS开发时, 我们使用的是Points, 系统会将Points整数倍处理光栅化为Rendered Pixels, 再将Rendered Pixel转换成Physical Pixels在屏幕上显示出来。
-320x480点坐标系经过2x渲染之后的Rendered Pixels为640x960
-iPhone6: 375x667点坐标系经过2x渲染之后的Rendered Pixels为750x1334
-iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x2208
-但是iPhone6 Plus实际分辨率为1080x1920，在Rendered Pixel会进行降低采样率的处理来显示在物理设备上。</p>
-
-<p class='post-footer'>
+<p>今天先这样，明天深入研究下。<p class='post-footer'>
             原文地址：
-            <a href='http://devsay.com/blog/2014/09/12/iphone6-screen/'>http://devsay.com/blog/2014/09/12/iphone6-screen/</a><br/>
+            <a href='http://devsay.com/blog/2014/09/28/ios8-location/'><a href="http://devsay.com/blog/2014/09/28/ios8-location/">http://devsay.com/blog/2014/09/28/ios8-location/</a></a><br/>
             Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
-            </p>
-
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
 </div>
 
 
@@ -125,7 +112,7 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
 
 
 
-<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
+<time class='entry-date' datetime='2014-09-28T21:50:25+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:50 pm</span></time>
       
 
 
@@ -144,10 +131,8 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/09/04/cocoapods/" title="Previous Post: CocoaPods">&laquo; CocoaPods</a>
+        <a class="basic-alignment left" href="/blog/2014/09/20/ios-tts/" title="Previous Post: iOS语音合成(TTS)">&laquo; iOS语音合成(TTS)</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/09/18/precompiled-header/" title="Next Post: fatal error: file has been modified since the precompiled header">fatal error: file has been modified since the precompiled header &raquo;</a>
       
     </p>
   </footer>
@@ -158,7 +143,7 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
 
   <section>
    <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/blog/2014/09/12/iphone6-screen" data-title="iPhone6分辨率适配" data-url="http://devsay.com/blog/2014/09/12/iphone6-screen/"></div>
+	<div class="ds-thread" data-thread-key="/blog/2014/09/28/ios8-location" data-title="ios8 定位服务" data-url="http://devsay.com/blog/2014/09/28/ios8-location/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

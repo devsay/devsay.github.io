@@ -9,7 +9,8 @@
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="在iOS开发当中，我们经常需要用到TTS(Text To Speech，将文本合成为语音)功能 实现这种方案有两种情况： 1.本地实现； 2.网络实现。 目前的解决方案： 1.AVSpeechSynthesizer AVSpeechSynthesizer *synthesizer = [[ &hellip;">
+  <meta name="description" content="笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。 iOS8对定位服务做了修改，需要在info.plist增加一项：
+NSLocationWhenInUseUsageDescription &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/28/ios8-location/">Ios8 定位服务</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-28T21:50:25+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。</p>
+
+<p>iOS8对定位服务做了修改，需要在info.plist增加一项：
+NSLocationWhenInUseUsageDescription 这里可以自定义对用户的提示。
+重新编译时，系统就会提示用户是否允许App启用定位服务。</p>
+
+<p>今天先这样，明天深入研究下。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/28/ios8-location/'><a href="http://devsay.com/blog/2014/09/28/ios8-location/">http://devsay.com/blog/2014/09/28/ios8-location/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -331,6 +372,10 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/28/ios8-location/">Ios8 定位服务</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/20/ios-tts/">iOS语音合成(TTS)</a>
       </li>
     
@@ -344,10 +389,6 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
     
       <li class="post">
         <a href="/blog/2014/09/04/cocoapods/">CocoaPods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/03/preface/">新起点</a>
       </li>
     
   </ul>

@@ -9,8 +9,7 @@
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。 iOS8对定位服务做了修改，需要在info.plist增加一项：
-NSLocationWhenInUseUsageDescription &hellip;">
+  <meta name="description" content="对数组元素排序是使用任何编程语言都会遇到的一个问题，其中大部分已经提供了一些很方便的排序方法供我们使用，那么iOS开发中有哪些方法可以让我们实现对数组元素快速排序呢？ 先定义一个数组，然后对其中元素进行排序： NSArray *originalArray = [NSArray &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,78 @@ NSLocationWhenInUseUsageDescription &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/08/ios-sort/">iOS数组快速排序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-08T16:48:38+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>对数组元素排序是使用任何编程语言都会遇到的一个问题，其中大部分已经提供了一些很方便的排序方法供我们使用，那么iOS开发中有哪些方法可以让我们实现对数组元素快速排序呢？</p>
+
+<p>先定义一个数组，然后对其中元素进行排序：</p>
+
+<p>NSArray *originalArray = [NSArray arrayWithObjects:[NSNumbernumberWithInt:5],
+                              [NSNumber numberWithInt:6],
+                              [NSNumber numberWithInt:3],
+                              [NSNumber numberWithInt:4],
+                              [NSNumber numberWithInt:1],
+                              [NSNumber numberWithInt:2],
+                              nil];</p>
+
+<p>方法1:NSComparator</p>
+
+<p>NSArray <em>sortedArray = [originalArray sortedArrayUsingComparator:^(NSNumber </em>number1,NSNumber *number2) {</p>
+
+<pre><code>    int val1 = [number1 intValue];
+
+    int val2 = [number2 intValue];
+
+    if (val1 &gt; val2) {
+        returnNSOrderedAscending;
+    } else {
+        return NSOrderedDescending;
+    }
+}];
+</code></pre>
+
+<p>NSLog(@&ldquo;%@&rdquo;, sortedArray);</p>
+
+<p>方法2.NSSortDescriptor</p>
+
+<p>NSSortDescriptor *descriptor = [[NSSortDescriptoralloc]initWithKey:nilascending:YES];</p>
+
+<p>NSArray *sortArray = [NSArrayarrayWithObjects:descriptor,nil];</p>
+
+<p>NSArray *sortedArray = [originalArray sortedArrayUsingDescriptors:sortArray];</p>
+
+<p>NSLog(@&ldquo;%@&rdquo;, sortedArray);<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/10/08/ios-sort/'><a href="http://devsay.com/blog/2014/10/08/ios-sort/">http://devsay.com/blog/2014/10/08/ios-sort/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -372,6 +443,10 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/08/ios-sort/">iOS数组快速排序</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/28/ios8-location/">Ios8 定位服务</a>
       </li>
     
@@ -385,10 +460,6 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
     
       <li class="post">
         <a href="/blog/2014/09/12/iphone6-screen/">iPhone6分辨率适配</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/04/cocoapods/">CocoaPods</a>
       </li>
     
   </ul>

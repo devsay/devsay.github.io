@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-09-28T21:54:36+08:00</updated>
+  <updated>2014-10-08T16:56:00+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS数组快速排序]]></title>
+    <link href="http://devsay.com/blog/2014/10/08/ios-sort/"/>
+    <updated>2014-10-08T16:48:38+08:00</updated>
+    <id>http://devsay.com/blog/2014/10/08/ios-sort</id>
+    <content type="html"><![CDATA[<p>对数组元素排序是使用任何编程语言都会遇到的一个问题，其中大部分已经提供了一些很方便的排序方法供我们使用，那么iOS开发中有哪些方法可以让我们实现对数组元素快速排序呢？</p>
+
+<p>先定义一个数组，然后对其中元素进行排序：</p>
+
+<p>NSArray *originalArray = [NSArray arrayWithObjects:[NSNumbernumberWithInt:5],
+                              [NSNumber numberWithInt:6],
+                              [NSNumber numberWithInt:3],
+                              [NSNumber numberWithInt:4],
+                              [NSNumber numberWithInt:1],
+                              [NSNumber numberWithInt:2],
+                              nil];</p>
+
+<p>方法1:NSComparator</p>
+
+<p>NSArray <em>sortedArray = [originalArray sortedArrayUsingComparator:^(NSNumber </em>number1,NSNumber *number2) {</p>
+
+<pre><code>    int val1 = [number1 intValue];
+
+    int val2 = [number2 intValue];
+
+    if (val1 &gt; val2) {
+        returnNSOrderedAscending;
+    } else {
+        return NSOrderedDescending;
+    }
+}];
+</code></pre>
+
+<p>NSLog(@&ldquo;%@&rdquo;, sortedArray);</p>
+
+<p>方法2.NSSortDescriptor</p>
+
+<p>NSSortDescriptor *descriptor = [[NSSortDescriptoralloc]initWithKey:nilascending:YES];</p>
+
+<p>NSArray *sortArray = [NSArrayarrayWithObjects:descriptor,nil];</p>
+
+<p>NSArray *sortedArray = [originalArray sortedArrayUsingDescriptors:sortArray];</p>
+
+<p>NSLog(@&ldquo;%@&rdquo;, sortedArray);<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/10/08/ios-sort/'><a href="http://devsay.com/blog/2014/10/08/ios-sort/">http://devsay.com/blog/2014/10/08/ios-sort/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ios8 定位服务]]></title>

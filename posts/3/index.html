@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iPhone6分辨率适配 - 开发者说</title>
+  <title>开发者说</title>
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。 先看苹果历代iPhone公布的分辨率及ppi
-iPhone6 Plus: 1920x1080, &hellip;">
-  <meta name="keywords" content="iOS,iPhone6,屏幕,适配,ppi,光栅化,分辨率">
+  <meta name="description" content="编译工程时，报错 fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/ &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -19,7 +18,7 @@ iPhone6 Plus: 1920x1080, &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devsay.com/blog/2014/09/12/iphone6-screen">
+  <link rel="canonical" href="http://devsay.com/posts/3">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="开发者说" type="application/atom+xml">
@@ -64,12 +63,63 @@ iPhone6 Plus: 1920x1080, &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">iPhone6分辨率适配</h1>
+      <h1 class="entry-title"><a href="/blog/2014/09/18/precompiled-header/">Fatal Error: File Has Been Modified Since the Precompiled Header</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-18T10:20:28+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:20 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>编译工程时，报错</p>
+
+<p>fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioSession.h&rsquo; has been modified since the precompiled header &lsquo;/Users/Mac/Library/Developer/Xcode/DerivedData/xxx-frlhxpamlowshtayyttcuivhpzcw/Build/Intermediates/PrecompiledHeaders/xxx-Prefix-Debug-dmssclbwyzjgywetcgfenqhmlpdi/xxx-Prefix-Debug.pch.pch&rsquo; was built</p>
+
+<p>xxx表示工程名称</p>
+
+<p>仔细查找原因，发现是不小心改动了AVAudioSession.h这个头文件导致的</p>
+
+<p>解决办法：</p>
+
+<p>1.Product->Clean</p>
+
+<p>2.删除~/Library/Developer/Xcode/DeriveData/下所有文件</p>
+
+<p>重新编译，成功。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/18/precompiled-header/'><a href="http://devsay.com/blog/2014/09/18/precompiled-header/">http://devsay.com/blog/2014/09/18/precompiled-header/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/12/iphone6-screen/">iPhone6分辨率适配</a></h1>
     
     
       <p class="meta">
@@ -85,7 +135,7 @@ iPhone6 Plus: 1920x1080, &hellip;">
   </header>
 
 
-<div class="entry-content"><p>9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。</p>
+  <div class="entry-content"><p>9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。</p>
 
 <p>先看苹果历代iPhone公布的分辨率及ppi
 iPhone6 Plus: 1920x1080, 401 ppi
@@ -111,73 +161,22 @@ iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x22
             </p>
 
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
+  
   
 
-<span class="byline author vcard">Posted by <span class="fn">devsay</span></span>
 
-      
-
-
-
-
-<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
-      
-
-
-    </p>
+    </article>
+  
+  <div class="pagination">
     
-      <div class="sharing">
-  
-  
-  
-  
-  	<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-  
-</div>
-
+      <a class="prev" href="/posts/4">&larr; Older</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/09/04/cocoapods/" title="Previous Post: CocoaPods">&laquo; CocoaPods</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/09/18/precompiled-header/" title="Next Post: fatal error: file has been modified since the precompiled header">fatal error: file has been modified since the precompiled header &raquo;</a>
-      
-    </p>
-  </footer>
-<!-- </article>
-
-</div> &#8211;>
-  </article>
-
-  <section>
-   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/blog/2014/09/12/iphone6-screen" data-title="iPhone6分辨率适配" data-url="http://devsay.com/blog/2014/09/12/iphone6-screen/"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"devsay"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-
-  </section>
- 
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/2">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -217,7 +216,6 @@ var duoshuoQuery = {short_name:"devsay"};
 
   
 </aside>
-
 
     </div>
   </div>

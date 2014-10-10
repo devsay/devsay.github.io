@@ -9,7 +9,7 @@
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="对数组元素排序是使用任何编程语言都会遇到的一个问题，其中大部分已经提供了一些很方便的排序方法供我们使用，那么iOS开发中有哪些方法可以让我们实现对数组元素快速排序呢？ 先定义一个数组，然后对其中元素进行排序： NSArray *originalArray = [NSArray &hellip;">
+  <meta name="description" content="基于LBS的应用开发是当今移动开发中的一大热门, 其中主要涉及到地图和定位两个方面. iOS开发中, 定位服务依赖于CoreLocation框架, CLLocationManager是CoreLocation中的核心类. 初始化: if ([ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/10/ios-corelocation/">ios定位服务CoreLocation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-10T19:22:23+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>基于LBS的应用开发是当今移动开发中的一大热门, 其中主要涉及到地图和定位两个方面.</p>
+
+<p>iOS开发中, 定位服务依赖于CoreLocation框架, CLLocationManager是CoreLocation中的核心类.</p>
+
+<p>初始化:</p>
+
+<p>if ([CLLocationManagerlocationServicesEnabled]) {
+            self.locationManager = [[CLLocationManageralloc]init];
+            self.locationManager.delegate =self;
+            self.locationManager.desiredAccuracy =kCLLocationAccuracyBest;
+            self.locationManager.distanceFilter =kDistanceFilter;
+            self.locationManager.headingFilter =kHeadingFilter;
+            self.locationManager.pausesLocationUpdatesAutomatically =YES;
+            self.locationManager.activityType =CLActivityTypeFitness;
+        }</p>
+
+<p>desiredAccuracy: 想要获得的定位精度, 会尽可能地满足设定的精度, 但不能保证在实际过程中能达到.
+distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
+
+<p>开始定位服务:</p>
+
+<p>[self.locationManagerstartUpdatingLocation];
+[self.locationManagerstartUpdatingHeading];</p>
+
+<p>当获取到位置信息或位置产生变化时会通知代理</p>
+
+<p>获取到新的位置:</p>
+
+<p>locationManager:didUpdateLocations
+方向产生变化时:</p>
+
+<p>locationManager:didUpdateHeading:<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/10/10/ios-corelocation/'><a href="http://devsay.com/blog/2014/10/10/ios-corelocation/">http://devsay.com/blog/2014/10/10/ios-corelocation/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -138,299 +203,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/28/ios8-location/">Ios8 定位服务</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-28T21:50:25+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:50 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。</p>
-
-<p>iOS8对定位服务做了修改，需要在info.plist增加一项：
-NSLocationWhenInUseUsageDescription 这里可以自定义对用户的提示。
-重新编译时，系统就会提示用户是否允许App启用定位服务。</p>
-
-<p>今天先这样，明天深入研究下。<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/28/ios8-location/'><a href="http://devsay.com/blog/2014/09/28/ios8-location/">http://devsay.com/blog/2014/09/28/ios8-location/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/20/ios-tts/">iOS语音合成(TTS)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-20T18:20:19+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:20 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在iOS开发当中，我们经常需要用到TTS(Text To Speech，将文本合成为语音)功能</p>
-
-<p>实现这种方案有两种情况：</p>
-
-<p>1.本地实现；</p>
-
-<p>2.网络实现。</p>
-
-<p>目前的解决方案：</p>
-
-<p>1.AVSpeechSynthesizer</p>
-
-<p>AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];</p>
-
-<p>synthesizer.delegate = self;</p>
-
-<p>AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@&ldquo;en&rdquo;];</p>
-
-<p>AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@&ldquo;This is a test&rdquo;];</p>
-
-<p>utterance.rate *= 0.5;</p>
-
-<p>utterance.voice = voice;</p>
-
-<p>[synthesizer speakUtterance:utterance];</p>
-
-<p>优点：调用iOS自带语音库，不需要单独往工程中添加语音包，有利于控制包的大小；</p>
-
-<p>缺点：对中文语音支持的不是很好，在语音的音质、断句方面不够理想。</p>
-
-<p>2.第三方语音：百度语音、讯飞语音</p>
-
-<p>国内讯飞做得比较早，技术各方面比较成熟，支持的平台多，相比其它第三方有明显的优势。</p>
-
-<p>百度语音出来的比较晚，对技术支持方面不完善，不过感觉音色方面比讯飞好。</p>
-
-<p>不过讯飞和百度目前只支持在线合成。<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/20/ios-tts/'><a href="http://devsay.com/blog/2014/09/20/ios-tts/">http://devsay.com/blog/2014/09/20/ios-tts/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/18/precompiled-header/">Fatal Error: File Has Been Modified Since the Precompiled Header</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-18T10:20:28+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:20 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>编译工程时，报错</p>
-
-<p>fatal error: file &lsquo;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/ iPhoneOS8.0.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioSession.h&rsquo; has been modified since the precompiled header &lsquo;/Users/Mac/Library/Developer/Xcode/DerivedData/xxx-frlhxpamlowshtayyttcuivhpzcw/Build/Intermediates/PrecompiledHeaders/xxx-Prefix-Debug-dmssclbwyzjgywetcgfenqhmlpdi/xxx-Prefix-Debug.pch.pch&rsquo; was built</p>
-
-<p>xxx表示工程名称</p>
-
-<p>仔细查找原因，发现是不小心改动了AVAudioSession.h这个头文件导致的</p>
-
-<p>解决办法：</p>
-
-<p>1.Product->Clean</p>
-
-<p>2.删除~/Library/Developer/Xcode/DeriveData/下所有文件</p>
-
-<p>重新编译，成功。<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/18/precompiled-header/'><a href="http://devsay.com/blog/2014/09/18/precompiled-header/">http://devsay.com/blog/2014/09/18/precompiled-header/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/12/iphone6-screen/">iPhone6分辨率适配</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。</p>
-
-<p>先看苹果历代iPhone公布的分辨率及ppi
-iPhone6 Plus: 1920x1080, 401 ppi
-iPhone6: 1334x750, 326 ppi
-iPhone5s: 1136x640, 326 ppi
-iPhone4：960x640, 326 ppi</p>
-
-<p>iPhone6与iPhone4，iPhone5s的ppi是一样的</p>
-
-<p>iPhone6 Plus准确尺寸: 1242x2208</p>
-
-<p>Points做iOS开发时, 我们使用的是Points, 系统会将Points整数倍处理光栅化为Rendered Pixels, 再将Rendered Pixel转换成Physical Pixels在屏幕上显示出来。
-320x480点坐标系经过2x渲染之后的Rendered Pixels为640x960
-iPhone6: 375x667点坐标系经过2x渲染之后的Rendered Pixels为750x1334
-iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x2208
-但是iPhone6 Plus实际分辨率为1080x1920，在Rendered Pixel会进行降低采样率的处理来显示在物理设备上。</p>
-
-<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/12/iphone6-screen/'>http://devsay.com/blog/2014/09/12/iphone6-screen/</a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
-            </p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/04/cocoapods/">CocoaPods</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-04T15:53:50+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:53 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在做iOS项目开发时，大量的第三方库极大的提高了我们的开发效率。随着功能的不断增加，工程变得越来越庞大，使用到的第三方库也越来越多，这时第三方库管理工具CocoaPods的重要性就凸显出来了。在第三方库的引入、升级、依赖关系上，CocoaPods让一切变得简单。
-1.安装
-安装CocoaPods依赖Ruby环境
-gem install cocoapods
-2.使用
-现在iOS开发中使用到的大部分第三方库都支持了CocoaPods，具体到使用的库时，我们可以查询下是否支持。
-pod search EGOTableViewPullRefresh</p>
-
-<p>在工程的主目录中创建文件Podfile，将工程中需要使用的库的名称及对应版本写到这个文件中。
-pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
-
-<p>pod install
-安装完成后，在工程的主目录中生成一个工程名对应的.xcworkspace文件，以后就使用这个文件来打开工程。
-以后在需要往工程中添加第三方库时，先编辑Podfile文件，然后执行pod update.<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/04/cocoapods/'><a href="http://devsay.com/blog/2014/09/04/cocoapods/">http://devsay.com/blog/2014/09/04/cocoapods/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/03/preface/">新起点</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-03T20:05:33+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>8:05 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>开发者说今天正式扬帆起航。新起点、新梦想、新挑战。<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/03/preface/'><a href="http://devsay.com/blog/2014/09/03/preface/">http://devsay.com/blog/2014/09/03/preface/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -441,6 +216,10 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/10/ios-corelocation/">ios定位服务CoreLocation</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/08/ios-sort/">iOS数组快速排序</a>
@@ -456,10 +235,6 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
     
       <li class="post">
         <a href="/blog/2014/09/18/precompiled-header/">Fatal Error: File Has Been Modified Since the Precompiled Header</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/12/iphone6-screen/">iPhone6分辨率适配</a>
       </li>
     
   </ul>

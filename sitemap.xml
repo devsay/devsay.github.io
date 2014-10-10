@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://devsay.com/blog/2014/10/10/ios-corelocation/</loc>
+    <lastmod>2014-10-10T19:22:23+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://devsay.com/blog/2014/10/08/ios-sort/</loc>
     <lastmod>2014-10-08T16:48:38+08:00</lastmod>
     <priority>0.8</priority>
@@ -47,14 +53,14 @@
   
   <url>
     <loc>http://devsay.com/blog/archives/</loc>
-    <lastmod>2014-10-08T16:56:00+08:00</lastmod>
+    <lastmod>2014-10-10T19:54:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://devsay.com/</loc>
-    <lastmod>2014-10-08T16:56:00+08:00</lastmod>
+    <lastmod>2014-10-10T19:54:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

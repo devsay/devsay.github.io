@@ -1,0 +1,47 @@
+---
+layout: post
+title: "iOS语音合成(TTS)"
+date: 2014-09-20 18:20:19 +0800
+keywords: iOS,TTS,语音,合成,方案,AVSpeechSynthesizer,AVSpeechUtterance,百度语音,讯飞语音
+comments: true
+categories: 
+---
+
+在iOS开发当中，我们经常需要用到TTS(Text To Speech，将文本合成为语音)功能
+
+实现这种方案有两种情况：
+
+1.本地实现；
+
+2.网络实现。
+
+
+目前的解决方案：
+
+1.AVSpeechSynthesizer
+
+AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
+
+synthesizer.delegate = self;
+    
+AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en"];
+
+AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"This is a test"];
+
+utterance.rate *= 0.5;
+
+utterance.voice = voice;
+
+[synthesizer speakUtterance:utterance];
+
+优点：调用iOS自带语音库，不需要单独往工程中添加语音包，有利于控制包的大小；
+
+缺点：对中文语音支持的不是很好，在语音的音质、断句方面不够理想。
+
+2.第三方语音：百度语音、讯飞语音
+
+国内讯飞做得比较早，技术各方面比较成熟，支持的平台多，相比其它第三方有明显的优势。
+
+百度语音出来的比较晚，对技术支持方面不完善，不过感觉音色方面比讯飞好。
+
+不过讯飞和百度目前只支持在线合成。

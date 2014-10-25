@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sizeclass"
+title: "Autolayout之SizeClass"
 date: 2014-10-22 19:52:03 +0800
 comments: true
 keywords: sizeclass, autolayout, 约束, 自动布局, xib

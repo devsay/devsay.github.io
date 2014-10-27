@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>开发者说</title>
+  <title>Autolayout之SizeClass - 开发者说</title>
   <meta name="author" content="devsay">
 
   
   <meta name="description" content="1.Size Class: Size Classes是iOS8中提出的新概念，表示对所有iOS设备的一个抽象，每个组合对应了不同的设备分类。 XCode6默认新创建的Xib是一个正方形，Size Class默认的值是wAny | hAny，对应所有iOS设备的layout。 &hellip;">
-  
+  <meta name="keywords" content="sizeclass, autolayout, 约束, 自动布局, xib">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devsay.com">
+  <link rel="canonical" href="http://devsay.com/blog/2014/10/22/ios-sizeclass">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="开发者说" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/22/ios-sizeclass/">Autolayout之SizeClass</a></h1>
+      <h1 class="entry-title">Autolayout之SizeClass</h1>
     
     
       <p class="meta">
@@ -87,7 +84,7 @@
   </header>
 
 
-  <div class="entry-content"><p>1.Size Class:</p>
+<div class="entry-content"><p>1.Size Class:</p>
 
 <p>Size Classes是iOS8中提出的新概念，表示对所有iOS设备的一个抽象，每个组合对应了不同的设备分类。</p>
 
@@ -125,85 +122,71 @@
             &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
             </p></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
+  
+
+<span class="byline author vcard">Posted by <span class="fn">devsay</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-22T19:52:03+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>7:52 pm</span></time>
+      
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/10/ios-corelocation/">ios定位服务CoreLocation</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-10T19:22:23+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:22 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>基于LBS的应用开发是当今移动开发中的一大热门, 其中主要涉及到地图和定位两个方面.</p>
-
-<p>iOS开发中, 定位服务依赖于CoreLocation框架, CLLocationManager是CoreLocation中的核心类.</p>
-
-<p>初始化:</p>
-
-<p>if ([CLLocationManagerlocationServicesEnabled]) {
-            self.locationManager = [[CLLocationManageralloc]init];
-            self.locationManager.delegate =self;
-            self.locationManager.desiredAccuracy =kCLLocationAccuracyBest;
-            self.locationManager.distanceFilter =kDistanceFilter;
-            self.locationManager.headingFilter =kHeadingFilter;
-            self.locationManager.pausesLocationUpdatesAutomatically =YES;
-            self.locationManager.activityType =CLActivityTypeFitness;
-        }</p>
-
-<p>desiredAccuracy: 想要获得的定位精度, 会尽可能地满足设定的精度, 但不能保证在实际过程中能达到.
-distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
-
-<p>开始定位服务:</p>
-
-<p>[self.locationManagerstartUpdatingLocation];
-[self.locationManagerstartUpdatingHeading];</p>
-
-<p>当获取到位置信息或位置产生变化时会通知代理</p>
-
-<p>获取到新的位置:</p>
-
-<p>locationManager:didUpdateLocations
-方向产生变化时:</p>
-
-<p>locationManager:didUpdateHeading:<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/10/10/ios-corelocation/'><a href="http://devsay.com/blog/2014/10/10/ios-corelocation/">http://devsay.com/blog/2014/10/10/ios-corelocation/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
+      <div class="sharing">
+  
+  
+  
+  
+  	<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/10/ios-corelocation/" title="Previous Post: ios定位服务CoreLocation">&laquo; ios定位服务CoreLocation</a>
+      
+      
+    </p>
+  </footer>
+<!-- </article>
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+</div> &#8211;>
+  </article>
+
+  <section>
+   <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/blog/2014/10/22/ios-sizeclass" data-title="Autolayout之SizeClass" data-url="http://devsay.com/blog/2014/10/22/ios-sizeclass/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"devsay"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  </section>
+ 
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -243,6 +226,7 @@ distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
 
   
 </aside>
+
 
     </div>
   </div>

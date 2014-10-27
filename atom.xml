@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-10-08T16:56:00+08:00</updated>
+  <updated>2014-10-27T11:00:40+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Autolayout之SizeClass]]></title>
+    <link href="http://devsay.com/blog/2014/10/22/ios-sizeclass/"/>
+    <updated>2014-10-22T19:52:03+08:00</updated>
+    <id>http://devsay.com/blog/2014/10/22/ios-sizeclass</id>
+    <content type="html"><![CDATA[<p>1.Size Class:</p>
+
+<p>Size Classes是iOS8中提出的新概念，表示对所有iOS设备的一个抽象，每个组合对应了不同的设备分类。</p>
+
+<p>XCode6默认新创建的Xib是一个正方形，Size Class默认的值是wAny | hAny，对应所有iOS设备的layout。</p>
+
+<p><img src="http://devsay.com/images/sizeclass/0.png" alt="" /></p>
+
+<p>横向即Width的取值依次为: Compact Any Regular</p>
+
+<p>纵向即Height的取值依次为：Compact Any Regular
+两者共可搭配出9中layout。</p>
+
+<p>2.约束：</p>
+
+<p>Autolayout的核心是约束。</p>
+
+<p>可以点击XCode的Editor菜单添加约束项，但每次只能选择一个。</p>
+
+<p><img src="http://devsay.com/images/sizeclass/1.png" alt="" /></p>
+
+<p>还可以点击右下角的一排按钮，可以同时添加或修改多个约束项，非常方便。</p>
+
+<p><img src="http://devsay.com/images/sizeclass/2.png" alt="" /></p>
+
+<p>其中有些约束是针对多个UIView的，你需要同时选中多个UIView才能添加。</p>
+
+<p><img src="http://devsay.com/images/sizeclass/3.png" alt="" /></p>
+
+<p>添加约束的关键是让系统能够根据你添加的约束确定视图的准确位置，如果添加的约束过少或者互相矛盾就会报错。</p>
+
+<p><img src="http://devsay.com/images/sizeclass/4.png" alt="" /><p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/10/22/ios-sizeclass/'><a href="http://devsay.com/blog/2014/10/22/ios-sizeclass/">http://devsay.com/blog/2014/10/22/ios-sizeclass/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ios定位服务CoreLocation]]></title>
+    <link href="http://devsay.com/blog/2014/10/10/ios-corelocation/"/>
+    <updated>2014-10-10T19:22:23+08:00</updated>
+    <id>http://devsay.com/blog/2014/10/10/ios-corelocation</id>
+    <content type="html"><![CDATA[<p>基于LBS的应用开发是当今移动开发中的一大热门, 其中主要涉及到地图和定位两个方面.</p>
+
+<p>iOS开发中, 定位服务依赖于CoreLocation框架, CLLocationManager是CoreLocation中的核心类.</p>
+
+<p>初始化:</p>
+
+<p>if ([CLLocationManagerlocationServicesEnabled]) {
+            self.locationManager = [[CLLocationManageralloc]init];
+            self.locationManager.delegate =self;
+            self.locationManager.desiredAccuracy =kCLLocationAccuracyBest;
+            self.locationManager.distanceFilter =kDistanceFilter;
+            self.locationManager.headingFilter =kHeadingFilter;
+            self.locationManager.pausesLocationUpdatesAutomatically =YES;
+            self.locationManager.activityType =CLActivityTypeFitness;
+        }</p>
+
+<p>desiredAccuracy: 想要获得的定位精度, 会尽可能地满足设定的精度, 但不能保证在实际过程中能达到.
+distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
+
+<p>开始定位服务:</p>
+
+<p>[self.locationManagerstartUpdatingLocation];
+[self.locationManagerstartUpdatingHeading];</p>
+
+<p>当获取到位置信息或位置产生变化时会通知代理</p>
+
+<p>获取到新的位置:</p>
+
+<p>locationManager:didUpdateLocations
+方向产生变化时:</p>
+
+<p>locationManager:didUpdateHeading:<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/10/10/ios-corelocation/'><a href="http://devsay.com/blog/2014/10/10/ios-corelocation/">http://devsay.com/blog/2014/10/10/ios-corelocation/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS数组快速排序]]></title>

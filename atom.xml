@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-10-27T18:08:40+08:00</updated>
+  <updated>2014-11-15T17:28:48+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS图片缓存]]></title>
+    <link href="http://devsay.com/blog/2014/11/15/ios-image-cache/"/>
+    <updated>2014-11-15T15:21:24+08:00</updated>
+    <id>http://devsay.com/blog/2014/11/15/ios-image-cache</id>
+    <content type="html"><![CDATA[<p>iOS的内存管理始终是开发者面临的大问题，内存占用过大时，很容易会被系统kill掉，开发者需要尽可能的优化内存占用问题。</p>
+
+<p>现在的App界面做的越来越精致，里面集成了大量的图片，笔者首先想到的就是如何减少这些图片占用的内存。</p>
+
+<p>通常我们加载图片使用以下方式:
+1.imageNamed:
+图片加载完成后，系统会把它缓存在内存中，当第二次加载时，直接就从内存中读取了，好处是加载速度过，缺点就是会一直占用系统内存，当我们的图片需要反复加载时，这种方式是一种不错的选择；
+2.imageWithContentOfFile:
+图片只加载一次，不会缓存在内存中，用完后就把占用的内存释放掉，每次都重新加载，这种加载方式适合只加载少次的情况。</p>
+
+<p>Asset Catalog
+是苹果推出的新的图片资源管理工具，方便、直观
+打包时，苹果会将图片资源统一打包成.car的文件，我们获取不到里面的图片路径，也就无法使用imageWithContentOfFile的方式加载了，只能使用imageNamed来加载，也就意味着加载过的图片全都缓存在了内存里，这样，整个App占用的内存就会比较大，被系统kill掉得风险就大了。</p>
+
+<p>解决办法：
+由于之前的工程一直使用Asset Catalog方式管理图片资源，现在需要想办法减少整个App的内存占用。首先想到的方法就是把图片从Asset Catalog中移出来。
+把Asset Catalog目录下地所有内容都Copy出来，然后将Asset Cataglog整个目录删掉。</p>
+
+<p>如果是原来使用Asset Catalog正确的话，@1x, @2x, @3x素材添加正确的话，这样做直接就OK了，是没有问题的。
+如果有不当使用的话就麻烦了, 诸如命名不当的小问题，直接这样读取就会出现问题，需要我们手动解析并加载。</p>
+
+<p>进入Asset Catalog目录:
+echo &ldquo;{&#34;assets\&rdquo;: [&ldquo; > a.json
+find Images.xcassets/ -name *.json | while read jsonfile; do
+tmppath=${jsonfile%.imageset/<em>}
+assetname=${tmppath##</em>/}
+echo &rdquo;{\&ldquo;assetname\&rdquo;:\&ldquo;${assetname}\&rdquo;,\&ldquo;content\&rdquo;:&ldquo; >> a.json
+cat $jsonfile >> a.json;
+echo &lsquo;},&rsquo; >>a.json
+done
+echo &lsquo;]}&rsquo; >>a.json</p>
+
+<p>去掉最后一个逗号，a.json就成了一个标准的JSON文件，我们需要做的就是解析此文件，根据实际情况加载不同的文件。</p>
+
+<p>使用Category的方式扩展UIImage类，重写imageNamed方法，这样原来所有带缓存的加载方式就变成了不带缓存的方式，当然，这个需要灵活处理，哪些图片需要加载之后缓存在内存，哪些不需要缓存在内存，都要分开处理。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/11/15/ios-image-cache/'>http://devsay.com/blog/2014/11/15/ios-image-cache/</a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
+            </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Autolayout之SizeClass]]></title>

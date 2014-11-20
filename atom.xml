@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-11-15T17:28:48+08:00</updated>
+  <updated>2014-11-20T16:34:47+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -12,6 +12,109 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C Runtime]]></title>
+    <link href="http://devsay.com/blog/2014/11/19/ios-runtime/"/>
+    <updated>2014-11-19T15:45:55+08:00</updated>
+    <id>http://devsay.com/blog/2014/11/19/ios-runtime</id>
+    <content type="html"><![CDATA[<p>版本:</p>
+
+<p>Objective-C的runtime有两种不同的版本: Legacy、Modern.
+Modern版本又Objective-C 2.0引进并且包含了一些新的特性。
+其最显著的特性是实例变量都是非脆弱的(non-fragile)
+1.legacy runtime，如果你改变了一个类的实例变量，你必须重新编译继承它的类。</p>
+
+<p>2.modern runtime，如果你改变了一个类的实例变量，没必要重新编译继承它的类。</p>
+
+<p>平台:</p>
+
+<p>iPhone应用和基于OS X v10.5以上的64位的程序使用modern runtime.</p>
+
+<p>其它的即基于OS X desktop的32位程序使用legacy runtime.</p>
+
+<p>运行时机制：
+Objective-C会将尽可能多得将决策从编译时间和链接时间中推迟到运行时，只要可能，它总是动态的执行任务。</p>
+
+<p>Objective-C是一门动态语言，其方法调用[receiver message]</p>
+
+<p>并不是简单地方法调用，而是向receiver发送message消息，这个绑定是在编译阶段做的，具体怎么响应则依赖于运行时环境。</p>
+
+<p>现在用的基本上都是Objective-C 2.0运行时库，/usr/lib/libobjc.A.dylib共享库实现了函数功能，提供了对Objective-C的动态特性的支持.</p>
+
+<p>首先看看定义</p>
+
+<p>usr/include/objc/message.h</p>
+
+<p>objc_msgSend(id self, SEL op, …);</p>
+
+<p>与Runtime交互
+Objective-C程序与runtime system交互有三种不同层级的方式:
+1.Objective-C源码
+大部分情况下，运行时系统会在幕后自动运行，你只需要编写并且编译Objective-C源码。
+当你编译的代码包括Objective-C的类和方法时，编译器会自动创建实现了动态语言特性的数据结构和函数调用。</p>
+
+<p>2.Foundation framework中NSObject类里面定义的方法
+Cocoa中的大部分对象都是NSObject的子类，所以也就继承了它的方法，NSProxy类是个特例。</p>
+
+<p>3.直接调用运行时函数接口
+运行时系统是一个共享库，由一些列函数和数据结构构成的头文件的公共接口。
+位于目录/user/include/objc.
+里面的许多函数允许你使用纯C语言去代替Objective-C编译器的工作。
+这些函数使得我们可以为运行时系统开发其它接口并且增强开发环境，使用Objective-C编程时，这些接口通常用不到，有时只有一些接口对我们有用。</p>
+
+<p>消息机制：</p>
+
+<p>objc_msgSend函数：</p>
+
+<p>Objective-C中，消息直到运行时才会和方法实现绑定。
+[receiver message]
+编译器会这个消息表达翻译成消息函数调用，objc_msgSend. 这个函数使用receiver和消息中提到的函数名(即方法选择器)作为它的两个主要参数:
+objc_msgSend(receiver, selector)
+传入消息的任何参数也交给了objc_msgSend:
+objc_msgSend(receiver, selector, arg1, arg2, …)</p>
+
+<p>objc_msgSend为了动态绑定做了一切必要的工作：</p>
+
+<p>1.首先寻找引用的selector的具体方法实现。因为相同的函数可以在不同的类中又不同的实现，需要根据接受者的类来找对应的方法实现。</p>
+
+<p>2.调用具体的实现方法，将接受者对象传递过去(及指向其数据的指针)，以及其它为方法中定义的参数。</p>
+
+<p>3.将函数实现中得返回值作为自己的返回值传递。</p>
+
+<p>调用消息函数的过程都是由编译器生成的，我们在代码中不可直接调用。</p>
+
+<p>消息机制的关键依赖于编译器为每个类和对象建立的结构。每个类结构包括两个关键元素：</p>
+
+<p>1.指向superclass的指针；</p>
+
+<p>2.类的调度表，这张表包含了联系入口，即方法选择器和类中定义的方法的地址的对应关系</p>
+
+<p>比如：选择器setOrigin::方法与setOrigin::的地址关联</p>
+
+<p>一个新的对象被创建时，会为其分配内存并初始化其实例变量。对象之中的第一个变量是指向其类结构的叫做isa的指针，</p>
+
+<p>严格来说，并不是作为语言的一部分，对于一个对象能够在运行时系统运转，isa指针是必须的.</p>
+
+<p>类元素和对象结构关系图表:</p>
+
+<p><img src="http://devsay.com/images/runtime/messaging1.gif" alt="" /></p>
+
+<p>当像一个对象发送消息时，消息函数根据对象的isa指针指向的类结构的调度表中查询方法选择器。如果找不到对应的选择器，objc_msgSend继续到父类的调度表中查找，就这样按照继承层级一直往上查找，直到NSObject类。一旦定位到方法选择器，函数会调用调度表中的方法入口并将接受者对象的数据结构传递进去。</p>
+
+<p>这种在运行时选择方法实现的方式，在面向对象编程语言的专业术语中，方法是动态地绑定到消息。</p>
+
+<p>为了加快消息机制的处理工程，运行时系统会缓存使用过的方法选择器和方法地址。每个类都有一个单独的缓存，包含类中定义的和集成来的方法选择器。在查询调度表前，会首先检查接受者对象的类是否有缓存(理论上，使用过的方法有可能再次被使用). 如果方法选择器在缓存中，消息只会比函数调用稍慢。只要程序运行的时间足够长，几乎发送过的消息都会缓存起来，缓存动态的增长以适应新的消息。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/11/19/ios-runtime/'>http://devsay.com/blog/2014/11/19/ios-runtime/</a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
+            </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS图片缓存]]></title>

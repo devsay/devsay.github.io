@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>开发者说</title>
+  <title>Objective-C Runtime - 开发者说</title>
   <meta name="author" content="devsay">
 
   
@@ -13,7 +13,7 @@
 Modern版本又Objective-C 2.0引进并且包含了一些新的特性。
 其最显著的特性是实例变量都是非脆弱的(non-fragile)
 1.legacy runtime， &hellip;">
-  
+  <meta name="keywords" content="runtime, iOS, 运行时, Objective-C, 消息">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -21,7 +21,7 @@ Modern版本又Objective-C 2.0引进并且包含了一些新的特性。
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devsay.com">
+  <link rel="canonical" href="http://devsay.com/blog/2014/11/19/ios-runtime">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="开发者说" type="application/atom+xml">
@@ -66,15 +66,12 @@ Modern版本又Objective-C 2.0引进并且包含了一些新的特性。
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/19/ios-runtime/">Objective-C Runtime</a></h1>
+      <h1 class="entry-title">Objective-C Runtime</h1>
     
     
       <p class="meta">
@@ -90,7 +87,7 @@ Modern版本又Objective-C 2.0引进并且包含了一些新的特性。
   </header>
 
 
-  <div class="entry-content"><p>版本:</p>
+<div class="entry-content"><p>版本:</p>
 
 <p>Objective-C的runtime有两种不同的版本: Legacy、Modern.
 Modern版本又Objective-C 2.0引进并且包含了一些新的特性。
@@ -186,91 +183,71 @@ objc_msgSend(receiver, selector, arg1, arg2, …)</p>
             </p>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
+  
+
+<span class="byline author vcard">Posted by <span class="fn">devsay</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-19T15:45:55+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:45 pm</span></time>
+      
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/15/ios-image-cache/">iOS图片缓存</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-15T15:21:24+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:21 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>iOS的内存管理始终是开发者面临的大问题，内存占用过大时，很容易会被系统kill掉，开发者需要尽可能的优化内存占用问题。</p>
-
-<p>现在的App界面做的越来越精致，里面集成了大量的图片，笔者首先想到的就是如何减少这些图片占用的内存。</p>
-
-<p>通常我们加载图片使用以下方式:
-1.imageNamed:
-图片加载完成后，系统会把它缓存在内存中，当第二次加载时，直接就从内存中读取了，好处是加载速度过，缺点就是会一直占用系统内存，当我们的图片需要反复加载时，这种方式是一种不错的选择；
-2.imageWithContentOfFile:
-图片只加载一次，不会缓存在内存中，用完后就把占用的内存释放掉，每次都重新加载，这种加载方式适合只加载少次的情况。</p>
-
-<p>Asset Catalog
-是苹果推出的新的图片资源管理工具，方便、直观
-打包时，苹果会将图片资源统一打包成.car的文件，我们获取不到里面的图片路径，也就无法使用imageWithContentOfFile的方式加载了，只能使用imageNamed来加载，也就意味着加载过的图片全都缓存在了内存里，这样，整个App占用的内存就会比较大，被系统kill掉得风险就大了。</p>
-
-<p>解决办法：
-由于之前的工程一直使用Asset Catalog方式管理图片资源，现在需要想办法减少整个App的内存占用。首先想到的方法就是把图片从Asset Catalog中移出来。
-把Asset Catalog目录下地所有内容都Copy出来，然后将Asset Cataglog整个目录删掉。</p>
-
-<p>如果是原来使用Asset Catalog正确的话，@1x, @2x, @3x素材添加正确的话，这样做直接就OK了，是没有问题的。
-如果有不当使用的话就麻烦了, 诸如命名不当的小问题，直接这样读取就会出现问题，需要我们手动解析并加载。</p>
-
-<p>进入Asset Catalog目录:
-echo &ldquo;{&#34;assets\&rdquo;: [&ldquo; > a.json
-find Images.xcassets/ -name *.json | while read jsonfile; do
-tmppath=${jsonfile%.imageset/<em>}
-assetname=${tmppath##</em>/}
-echo &rdquo;{\&ldquo;assetname\&rdquo;:\&ldquo;${assetname}\&rdquo;,\&ldquo;content\&rdquo;:&ldquo; >> a.json
-cat $jsonfile >> a.json;
-echo &lsquo;},&rsquo; >>a.json
-done
-echo &lsquo;]}&rsquo; >>a.json</p>
-
-<p>去掉最后一个逗号，a.json就成了一个标准的JSON文件，我们需要做的就是解析此文件，根据实际情况加载不同的文件。</p>
-
-<p>使用Category的方式扩展UIImage类，重写imageNamed方法，这样原来所有带缓存的加载方式就变成了不带缓存的方式，当然，这个需要灵活处理，哪些图片需要加载之后缓存在内存，哪些不需要缓存在内存，都要分开处理。</p>
-
-<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/11/15/ios-image-cache/'>http://devsay.com/blog/2014/11/15/ios-image-cache/</a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
-            </p>
-
+      <div class="sharing">
+  
+  
+  
+  
+  	<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/15/ios-image-cache/" title="Previous Post: iOS图片缓存">&laquo; iOS图片缓存</a>
+      
+      
+    </p>
+  </footer>
+<!-- </article>
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+</div> &#8211;>
+  </article>
+
+  <section>
+   <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/blog/2014/11/19/ios-runtime" data-title="Objective-C Runtime" data-url="http://devsay.com/blog/2014/11/19/ios-runtime/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"devsay"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  </section>
+ 
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -310,6 +287,7 @@ echo &lsquo;]}&rsquo; >>a.json</p>
 
   
 </aside>
+
 
     </div>
   </div>

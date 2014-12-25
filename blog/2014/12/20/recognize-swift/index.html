@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS图片缓存 - 开发者说</title>
+  <title>Recognize Swift - 开发者说</title>
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="iOS的内存管理始终是开发者面临的大问题，内存占用过大时，很容易会被系统kill掉，开发者需要尽可能的优化内存占用问题。 现在的App界面做的越来越精致，里面集成了大量的图片，笔者首先想到的就是如何减少这些图片占用的内存。 通常我们加载图片使用以下方式:
-1.imageNamed:
-图片加载完成后 &hellip;">
-  <meta name="keywords" content="iOS, image, cache, 图片缓存, 内存">
+  <meta name="description" content="Swift是苹果推出的全新编程语言，至今已有几个月了。在Swift语言刚推出时，我只是大概了解了下，并没有使用并深入研究。考虑到苹果的一贯做法，学习新的Swift是很有必要的。而且作为开发者，也要不断更新自己的知识。Swift与Objective-C可以在同一个工程中混用，所以我在做新的页面时， &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devsay.com/blog/2014/11/15/ios-image-cache">
+  <link rel="canonical" href="http://devsay.com/blog/2014/12/20/recognize-swift">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="开发者说" type="application/atom+xml">
@@ -70,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">iOS图片缓存</h1>
+      <h1 class="entry-title">Recognize Swift</h1>
     
     
       <p class="meta">
@@ -79,52 +77,42 @@
 
 
 
-<time class='entry-date' datetime='2014-11-15T15:21:24+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:21 pm</span></time>
+<time class='entry-date' datetime='2014-12-20T18:16:11+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:16 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>iOS的内存管理始终是开发者面临的大问题，内存占用过大时，很容易会被系统kill掉，开发者需要尽可能的优化内存占用问题。</p>
+<div class="entry-content"><p>Swift是苹果推出的全新编程语言，至今已有几个月了。在Swift语言刚推出时，我只是大概了解了下，并没有使用并深入研究。考虑到苹果的一贯做法，学习新的Swift是很有必要的。而且作为开发者，也要不断更新自己的知识。Swift与Objective-C可以在同一个工程中混用，所以我在做新的页面时，采用了Swift语言来实现新的模块。</p>
 
-<p>现在的App界面做的越来越精致，里面集成了大量的图片，笔者首先想到的就是如何减少这些图片占用的内存。</p>
+<p>在已有的Objective-C工程的基础上使用Swift开发，首先创建类，两种方式：
+1.选择新建Source->Swift File
+这样会自动在工程中生成一个文件:工程名-Bridging-Header.h
+可以在Build Settings->Swift Compiler->Objective-C Bridging Header中看到此文件在编译选项中已经设置好了
+当在Swift中引用Objective-C的类时，只要在Bridging Header中import即可。
+2.选择新建Cocoa Touch Class，填好类名后，选择Language为Swift，这种方式只会生成类的swift文件，不会生成Bridging-Header.h这个文件，需要我们手动创建此文件。</p>
 
-<p>通常我们加载图片使用以下方式:
-1.imageNamed:
-图片加载完成后，系统会把它缓存在内存中，当第二次加载时，直接就从内存中读取了，好处是加载速度过，缺点就是会一直占用系统内存，当我们的图片需要反复加载时，这种方式是一种不错的选择；
-2.imageWithContentOfFile:
-图片只加载一次，不会缓存在内存中，用完后就把占用的内存释放掉，每次都重新加载，这种加载方式适合只加载少次的情况。</p>
+<p>这样子，我们第一个Swift文件已经生成，可以看到，Swift与Objective-C是一门完全不同的语言，写法上更像是脚本语言。
+类对应的Swift没有.h文件，只有一个以.swift结尾的文件, Swift语句之后可以不写逗号</p>
 
-<p>Asset Catalog
-是苹果推出的新的图片资源管理工具，方便、直观
-打包时，苹果会将图片资源统一打包成.car的文件，我们获取不到里面的图片路径，也就无法使用imageWithContentOfFile的方式加载了，只能使用imageNamed来加载，也就意味着加载过的图片全都缓存在了内存里，这样，整个App占用的内存就会比较大，被系统kill掉得风险就大了。</p>
+<p>Swift与Objective-C的一些区别:
+增加了声明:
+let 常量
+var 变量</p>
 
-<p>解决办法：
-由于之前的工程一直使用Asset Catalog方式管理图片资源，现在需要想办法减少整个App的内存占用。首先想到的方法就是把图片从Asset Catalog中移出来。
-把Asset Catalog目录下地所有内容都Copy出来，然后将Asset Cataglog整个目录删掉。</p>
+<p>基本类型:Int, Double, Float, Bool
+注意Bool类型的值只有两种:true, false,取消了YES, NO, Bool是一个数据类型，与int没有任何关系</p>
 
-<p>如果是原来使用Asset Catalog正确的话，@1x, @2x, @3x素材添加正确的话，这样做直接就OK了，是没有问题的。
-如果有不当使用的话就麻烦了, 诸如命名不当的小问题，直接这样读取就会出现问题，需要我们手动解析并加载。</p>
+<p>新增元组Tuple类型
+表示一组数据</p>
 
-<p>进入Asset Catalog目录:
-echo &ldquo;{&#34;assets\&rdquo;: [&ldquo; > a.json
-find Images.xcassets/ -name *.json | while read jsonfile; do
-tmppath=${jsonfile%.imageset/<em>}
-assetname=${tmppath##</em>/}
-echo &rdquo;{\&ldquo;assetname\&rdquo;:\&ldquo;${assetname}\&rdquo;,\&ldquo;content\&rdquo;:&ldquo; >> a.json
-cat $jsonfile >> a.json;
-echo &lsquo;},&rsquo; >>a.json
-done
-echo &lsquo;]}&rsquo; >>a.json</p>
-
-<p>去掉最后一个逗号，a.json就成了一个标准的JSON文件，我们需要做的就是解析此文件，根据实际情况加载不同的文件。</p>
-
-<p>使用Category的方式扩展UIImage类，重写imageNamed方法，这样原来所有带缓存的加载方式就变成了不带缓存的方式，当然，这个需要灵活处理，哪些图片需要加载之后缓存在内存，哪些不需要缓存在内存，都要分开处理。</p>
+<p>新增Optional类型，可以用在任何类型上
+表示两种含义1.nil，没有纸 2.有一个某某类型的值</p>
 
 <p class='post-footer'>
             原文地址：
-            <a href='http://devsay.com/blog/2014/11/15/ios-image-cache/'>http://devsay.com/blog/2014/11/15/ios-image-cache/</a><br/>
+            <a href='http://devsay.com/blog/2014/12/20/recognize-swift/'>http://devsay.com/blog/2014/12/20/recognize-swift/</a><br/>
             Written by <a href='http://devsay.com'>devsay</a>.
             &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
             </p>
@@ -144,7 +132,7 @@ echo &lsquo;]}&rsquo; >>a.json</p>
 
 
 
-<time class='entry-date' datetime='2014-11-15T15:21:24+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:21 pm</span></time>
+<time class='entry-date' datetime='2014-12-20T18:16:11+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:16 pm</span></time>
       
 
 
@@ -163,10 +151,8 @@ echo &lsquo;]}&rsquo; >>a.json</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/22/ios-sizeclass/" title="Previous Post: Autolayout之SizeClass">&laquo; Autolayout之SizeClass</a>
+        <a class="basic-alignment left" href="/blog/2014/11/19/ios-runtime/" title="Previous Post: Objective-C Runtime">&laquo; Objective-C Runtime</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/19/ios-runtime/" title="Next Post: Objective-C Runtime">Objective-C Runtime &raquo;</a>
       
     </p>
   </footer>
@@ -177,7 +163,7 @@ echo &lsquo;]}&rsquo; >>a.json</p>
 
   <section>
    <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/blog/2014/11/15/ios-image-cache" data-title="iOS图片缓存" data-url="http://devsay.com/blog/2014/11/15/ios-image-cache/"></div>
+	<div class="ds-thread" data-thread-key="/blog/2014/12/20/recognize-swift" data-title="recognize swift" data-url="http://devsay.com/blog/2014/12/20/recognize-swift/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

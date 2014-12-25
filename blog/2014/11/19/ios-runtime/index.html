@@ -175,13 +175,46 @@ objc_msgSend(receiver, selector, arg1, arg2, …)</p>
 
 <p>为了加快消息机制的处理工程，运行时系统会缓存使用过的方法选择器和方法地址。每个类都有一个单独的缓存，包含类中定义的和集成来的方法选择器。在查询调度表前，会首先检查接受者对象的类是否有缓存(理论上，使用过的方法有可能再次被使用). 如果方法选择器在缓存中，消息只会比函数调用稍慢。只要程序运行的时间足够长，几乎发送过的消息都会缓存起来，缓存动态的增长以适应新的消息。</p>
 
-<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/11/19/ios-runtime/'>http://devsay.com/blog/2014/11/19/ios-runtime/</a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
-            </p>
+<p>转发机制：</p>
 
+<p>Dynamic Method Resolution
+如何动态的提供方法实现</p>
+
+<p>很多情况下，我们需要动态地实现一个方法。比如，Objective-C声明了一个属性包含@dynamic指令:
+@dynamic propertyName;
+告诉编译器跟此属性有关联的方法会动态的提供。
+你可以通过实现 resolveInstanceMethod: 和resolveClassMethod: 分别来为给定的实例和类方法选择器来动态的提供方法实现。
+Objective-C方法只是一个至少包含两个参数self和<em>cmd的C语言函数。你可以使用class_addMethod来为一个类添加一个方法。
+比如针对这个函数：
+void dynamicMethodIMP(id self, SEL </em>cmd) {
+    //implementation &hellip;
+}</p>
+
+<p>你可以可以将其作为一个方法动态的加入到类中，就像这样：
+@implementation MyClass
++(BOOL)resolveInstanceMethod:(SEL)aSEL {
+    if (aSEL == @selector(resolveThisMethodDynamically)) {
+        class_addMehtod([self class], aSEL, (IMP)dynamicMehtodMP, &ldquo;v0:&rdquo;)
+        return YES;
+    }
+    return [super resolveInstanceMehtod:aSEL];
+}
+Objective-C程序可以在运行中载入链接新的类和Category。
+动态加载可以被用来做很多不同的事情。比如:系统引用中的各种模块都是动态加载的。
+在Cocoa环境中，动态载入一般用来使得应用可以被定制化，你的应用在运行时可以加载别人写的模块。
+可加载的模块可以扩展你的应用.
+你提供framework, 别人来提供代码。</p>
+
+<p>Message Forwarding消息转发
+向一个对象发送消息而不处理消息是错误的。然而，通知错误之前，运行时系统给了接受消息的对象第二次处理消息的机会。
+运行时系统会发送forwardInvocation:消息给对象，并且将一个NSInvocation对象作为它的唯一参数，NSInvocation对象封装了原始的消息和消息带的参数。
+你可以实现forwardInvocation:方法作为对消息的默认响应，或者使用其它方法来避免错误。
+顾名思义，forwardInvocation通常用于将消息转发给另一个对象。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/11/19/ios-runtime/'><a href="http://devsay.com/blog/2014/11/19/ios-runtime/">http://devsay.com/blog/2014/11/19/ios-runtime/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
 </div>
 
 
@@ -219,6 +252,8 @@ objc_msgSend(receiver, selector, arg1, arg2, …)</p>
         <a class="basic-alignment left" href="/blog/2014/11/15/ios-image-cache/" title="Previous Post: iOS图片缓存">&laquo; iOS图片缓存</a>
       
       
+        <a class="basic-alignment right" href="/blog/2014/12/20/recognize-swift/" title="Next Post: recognize swift">recognize swift &raquo;</a>
+      
     </p>
   </footer>
 <!-- </article>
@@ -255,6 +290,10 @@ var duoshuoQuery = {short_name:"devsay"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/20/recognize-swift/">Recognize Swift</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/19/ios-runtime/">Objective-C Runtime</a>
       </li>
     
@@ -268,10 +307,6 @@ var duoshuoQuery = {short_name:"devsay"};
     
       <li class="post">
         <a href="/blog/2014/10/10/ios-corelocation/">ios定位服务CoreLocation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/08/ios-sort/">iOS数组快速排序</a>
       </li>
     
   </ul>

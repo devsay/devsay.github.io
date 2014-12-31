@@ -9,7 +9,7 @@
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="基于LBS的应用开发是当今移动开发中的一大热门, 其中主要涉及到地图和定位两个方面. iOS开发中, 定位服务依赖于CoreLocation框架, CLLocationManager是CoreLocation中的核心类. 初始化: if ([ &hellip;">
+  <meta name="description" content="1.Size Class: Size Classes是iOS8中提出的新概念，表示对所有iOS设备的一个抽象，每个组合对应了不同的设备分类。 XCode6默认新创建的Xib是一个正方形，Size Class默认的值是wAny | hAny，对应所有iOS设备的layout。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/22/ios-sizeclass/">Autolayout之SizeClass</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-22T19:52:03+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>7:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.Size Class:</p>
+
+<p>Size Classes是iOS8中提出的新概念，表示对所有iOS设备的一个抽象，每个组合对应了不同的设备分类。</p>
+
+<p>XCode6默认新创建的Xib是一个正方形，Size Class默认的值是wAny | hAny，对应所有iOS设备的layout。</p>
+
+<p><img src="/images/sizeclass/0.png" alt="" /></p>
+
+<p>横向即Width的取值依次为: Compact Any Regular</p>
+
+<p>纵向即Height的取值依次为：Compact Any Regular
+两者共可搭配出9中layout。</p>
+
+<p>2.约束：</p>
+
+<p>Autolayout的核心是约束。</p>
+
+<p>可以点击XCode的Editor菜单添加约束项，但每次只能选择一个。</p>
+
+<p><img src="/images/sizeclass/1.png" alt="" /></p>
+
+<p>还可以点击右下角的一排按钮，可以同时添加或修改多个约束项，非常方便。</p>
+
+<p><img src="/images/sizeclass/2.png" alt="" /></p>
+
+<p>其中有些约束是针对多个UIView的，你需要同时选中多个UIView才能添加。</p>
+
+<p><img src="/images/sizeclass/3.png" alt="" /></p>
+
+<p>添加约束的关键是让系统能够根据你添加的约束确定视图的准确位置，如果添加的约束过少或者互相矛盾就会报错。</p>
+
+<p><img src="/images/sizeclass/4.png" alt="" /><p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/10/22/ios-sizeclass/'><a href="http://devsay.com/blog/2014/10/22/ios-sizeclass/">http://devsay.com/blog/2014/10/22/ios-sizeclass/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -131,78 +196,6 @@ distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/08/ios-sort/">iOS数组快速排序</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-08T16:48:38+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:48 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>对数组元素排序是使用任何编程语言都会遇到的一个问题，其中大部分已经提供了一些很方便的排序方法供我们使用，那么iOS开发中有哪些方法可以让我们实现对数组元素快速排序呢？</p>
-
-<p>先定义一个数组，然后对其中元素进行排序：</p>
-
-<p>NSArray *originalArray = [NSArray arrayWithObjects:[NSNumbernumberWithInt:5],
-                              [NSNumber numberWithInt:6],
-                              [NSNumber numberWithInt:3],
-                              [NSNumber numberWithInt:4],
-                              [NSNumber numberWithInt:1],
-                              [NSNumber numberWithInt:2],
-                              nil];</p>
-
-<p>方法1:NSComparator</p>
-
-<p>NSArray <em>sortedArray = [originalArray sortedArrayUsingComparator:^(NSNumber </em>number1,NSNumber *number2) {</p>
-
-<pre><code>    int val1 = [number1 intValue];
-
-    int val2 = [number2 intValue];
-
-    if (val1 &gt; val2) {
-        returnNSOrderedAscending;
-    } else {
-        return NSOrderedDescending;
-    }
-}];
-</code></pre>
-
-<p>NSLog(@&ldquo;%@&rdquo;, sortedArray);</p>
-
-<p>方法2.NSSortDescriptor</p>
-
-<p>NSSortDescriptor *descriptor = [[NSSortDescriptoralloc]initWithKey:nilascending:YES];</p>
-
-<p>NSArray *sortArray = [NSArrayarrayWithObjects:descriptor,nil];</p>
-
-<p>NSArray *sortedArray = [originalArray sortedArrayUsingDescriptors:sortArray];</p>
-
-<p>NSLog(@&ldquo;%@&rdquo;, sortedArray);<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/10/08/ios-sort/'><a href="http://devsay.com/blog/2014/10/08/ios-sort/">http://devsay.com/blog/2014/10/08/ios-sort/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -220,7 +213,11 @@ distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/12/20/recognize-swift/">Recognize Swift</a>
+        <a href="/blog/2014/12/31/2014-summary/">2014总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/20/recognize-swift/">初识Swift</a>
       </li>
     
       <li class="post">
@@ -233,10 +230,6 @@ distanceFilter: 低于水平距离会过滤掉而不产生更新事件.</p>
     
       <li class="post">
         <a href="/blog/2014/10/22/ios-sizeclass/">Autolayout之SizeClass</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/10/ios-corelocation/">ios定位服务CoreLocation</a>
       </li>
     
   </ul>

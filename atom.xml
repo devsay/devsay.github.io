@@ -4,7 +4,7 @@
   <title><![CDATA[开发者说]]></title>
   <link href="http://devsay.com/atom.xml" rel="self"/>
   <link href="http://devsay.com/"/>
-  <updated>2014-12-25T20:01:01+08:00</updated>
+  <updated>2014-12-31T17:43:42+08:00</updated>
   <id>http://devsay.com/</id>
   <author>
     <name><![CDATA[devsay]]></name>
@@ -14,7 +14,37 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Recognize Swift]]></title>
+    <title type="html"><![CDATA[2014总结]]></title>
+    <link href="http://devsay.com/blog/2014/12/31/2014-summary/"/>
+    <updated>2014-12-31T16:53:35+08:00</updated>
+    <id>http://devsay.com/blog/2014/12/31/2014-summary</id>
+    <content type="html"><![CDATA[<p>今天是2014年的最后一天，总结下这一年的经验:</p>
+
+<p>2014对于自己的关键词是&#8221;创业&#8221;&ldquo;
+这几年，移动互联网领域的创业可以用火热来形容，创业有两种形式：
+1.自己主导创业，作为公司的创始人；
+2.加入一个创业团队。</p>
+
+<p>今年年初跳槽创业，选择了第二种方式，也就是加入了一个创业团队。创业公司的节奏很快，成长也很快，会遇到各种各样的问题，人生当中确实需要创业经历来历练自己。</p>
+
+<p>创业的生活:
+加班:
+创业的过程是苦的，始终保持着每周最少6x12小时的工作制，有时会干到半夜三点。在此期间养成了跑步的习惯，跑步成了我释放压力最主要的方式，基本每天晚上保证五公里的长度，一直坚持到了11月份。在任何公司，尤其是创业公司，学会如何释放压力是非常非常重要的。互联网公司避免不了加班，但加班要有个度，关键是如何提高工作效率，长期过度加班最终伤的是整个团队，所以团队建设对于创业公司尤其重要。</p>
+
+<p>工作:
+创业是一个摸着石头过河的过程，大家都在摸索中前进，免不了走弯路。创业的这一年，产品在不断的迭代，走过的弯路不少。对于移动互联网，拼的就是时间，产品讲究的是快速迭代，哪个产品能抢在时间前面就成功了一大半。团队要明白产品的定位，对需求的定位要更加精确，不确定的定位和需求最终会不断拖慢产品的迭代，能做减法绝不做加法。需求明确了，接下来就是团队的执行力。</p>
+
+<p>在这一年中，在不断提高自己技术功底的同时，也在不断的体验各种产品，关注各种移动互联网创业公司的动态，寻找创意。<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/12/31/2014-summary/'><a href="http://devsay.com/blog/2014/12/31/2014-summary/">http://devsay.com/blog/2014/12/31/2014-summary/</a></a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
+            </p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[初识Swift]]></title>
     <link href="http://devsay.com/blog/2014/12/20/recognize-swift/"/>
     <updated>2014-12-20T18:16:11+08:00</updated>
     <id>http://devsay.com/blog/2014/12/20/recognize-swift</id>
@@ -39,7 +69,7 @@ var 变量</p>
 注意Bool类型的值只有两种:true, false,取消了YES, NO, Bool是一个数据类型，与int没有任何关系</p>
 
 <p>新增元组Tuple类型
-表示一组数据</p>
+表示一组数据, Tuple内的值可以是任意不相同的类型</p>
 
 <p>新增Optional类型，可以用在任何类型上
 表示两种含义1.nil，没有纸 2.有一个某某类型的值</p>

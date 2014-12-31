@@ -9,8 +9,8 @@
   <meta name="author" content="devsay">
 
   
-  <meta name="description" content="在做iOS项目开发时，大量的第三方库极大的提高了我们的开发效率。随着功能的不断增加，工程变得越来越庞大，使用到的第三方库也越来越多，这时第三方库管理工具CocoaPods的重要性就凸显出来了。在第三方库的引入、升级、依赖关系上，CocoaPods让一切变得简单。
-1.安装 &hellip;">
+  <meta name="description" content="9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。 先看苹果历代iPhone公布的分辨率及ppi
+iPhone6 Plus: 1920x1080, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,59 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/09/12/iphone6-screen/">iPhone6分辨率适配</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-12T15:51:29+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:51 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>9月10日苹果正式发布了全新的iPhone6、iPhone6 Plus, 相比之前, 这次iPhone在屏幕尺寸上变化巨大。最近开发者和设计师们都很关心自己的App应该怎么来对两款iPhone6适配。</p>
+
+<p>先看苹果历代iPhone公布的分辨率及ppi
+iPhone6 Plus: 1920x1080, 401 ppi
+iPhone6: 1334x750, 326 ppi
+iPhone5s: 1136x640, 326 ppi
+iPhone4：960x640, 326 ppi</p>
+
+<p>iPhone6与iPhone4，iPhone5s的ppi是一样的</p>
+
+<p>iPhone6 Plus准确尺寸: 1242x2208</p>
+
+<p>Points做iOS开发时, 我们使用的是Points, 系统会将Points整数倍处理光栅化为Rendered Pixels, 再将Rendered Pixel转换成Physical Pixels在屏幕上显示出来。
+320x480点坐标系经过2x渲染之后的Rendered Pixels为640x960
+iPhone6: 375x667点坐标系经过2x渲染之后的Rendered Pixels为750x1334
+iPhone6 Plus: 414x736点坐标系进过3x渲染之后的Rendered Pixel为1242x2208
+但是iPhone6 Plus实际分辨率为1080x1920，在Rendered Pixel会进行降低采样率的处理来显示在物理设备上。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://devsay.com/blog/2014/09/12/iphone6-screen/'>http://devsay.com/blog/2014/09/12/iphone6-screen/</a><br/>
+            Written by <a href='http://devsay.com'>devsay</a>.
+            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
+            </p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/09/04/cocoapods/">CocoaPods</a></h1>
     
     
@@ -114,41 +167,9 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/03/preface/">新起点</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-03T20:05:33+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>8:05 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>开发者说今天正式扬帆起航。新起点、新梦想、新挑战。<p class='post-footer'>
-            原文地址：
-            <a href='http://devsay.com/blog/2014/09/03/preface/'><a href="http://devsay.com/blog/2014/09/03/preface/">http://devsay.com/blog/2014/09/03/preface/</a></a><br/>
-            Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/7">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -163,7 +184,11 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/12/20/recognize-swift/">Recognize Swift</a>
+        <a href="/blog/2014/12/31/2014-summary/">2014总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/20/recognize-swift/">初识Swift</a>
       </li>
     
       <li class="post">
@@ -176,10 +201,6 @@ pod &lsquo;EGOTableViewPullRefresh&rsquo;, &lsquo;~> 0.1.0&rsquo;</p>
     
       <li class="post">
         <a href="/blog/2014/10/22/ios-sizeclass/">Autolayout之SizeClass</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/10/ios-corelocation/">ios定位服务CoreLocation</a>
       </li>
     
   </ul>

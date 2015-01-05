@@ -143,7 +143,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/09/28/ios8-location/">Ios8 定位服务</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/09/28/ios8-location/">iOS8 定位权限</a></h1>
     
     
       <p class="meta">
@@ -161,16 +161,48 @@
 
   <div class="entry-content"><p>笔者将XCode5升级到Xcode6，iOS7升级到iOS8，重新编译发现工程无法使用定位服务，App启动时也没提示用户是否允许当前App使用定位服务。</p>
 
-<p>iOS8对定位服务做了修改，需要在info.plist增加一项：
-NSLocationWhenInUseUsageDescription 这里可以自定义对用户的提示。
-重新编译时，系统就会提示用户是否允许App启用定位服务。</p>
+<p>原因是iOS8对定位服务做了修改，我们需要将iOS8和iOS8之前的版本分开处理:</p>
 
-<p>今天先这样，明天深入研究下。<p class='post-footer'>
+<p>iOS8之前的版本请求定位权限时隐式的，当我们使用定位服务时，系统会自动弹出授权框来让用户确认，iOS8则是显示的，并且将权限分成两类:</p>
+
+<p>requestAlwaysAuthorization()</p>
+
+<p>or requestWhenInUseAuthorization()</p>
+
+<p>这样，我们就可以不用等到使用定位服务时才让用户决定是否开启请求权限，直接在启动App时就请求权限。</p>
+
+<p>另外还需要在info.plist中强制增加一项才能弹出定位授权框:</p>
+
+<p>NSLocationAlwaysUsageDescription</p>
+
+<p>or NSLocationWhenInUseUsageDescription</p>
+
+<p>这里可以自定义对用户的提示，说明哪些功能需要依赖定位服务。</p>
+
+<p>iOS8之前版本用的是NSLocationUsageDescription，是可选的。</p>
+
+<p>重新编译运行，就会弹出定位授权框让用户选择是否允许App启用定位服务。</p>
+
+<p>我们需要实现代理方法来监听定位授权变更:</p>
+
+<p>locationManager:didChangeAuthorizationStatus:</p>
+
+<p>此外，当locationManager初始化并设置代理后也会回调。</p>
+
+<p>可以使用下面方法来获取授权的状态码:
+CLAuthorizationStatus authorizationStatus = [CLLocation authorizationStatus];</p>
+
+<p>定位授权弹出框只会显示一次，当用户选择之后，再使用requestWhenInUseAuthorization()或requestAlwaysAuthorization()，不会显示授权弹出框，只能通过设置->隐私->定位服务中改变权限来更改。</p>
+
+<p>可以使用[[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]]跳转到当前App对应的设置界面引导用户授权。</p>
+
+<p class='post-footer'>
             原文地址：
-            <a href='http://devsay.com/blog/2014/09/28/ios8-location/'><a href="http://devsay.com/blog/2014/09/28/ios8-location/">http://devsay.com/blog/2014/09/28/ios8-location/</a></a><br/>
+            <a href='http://devsay.com/blog/2014/09/28/ios8-location/'>http://devsay.com/blog/2014/09/28/ios8-location/</a><br/>
             Written by <a href='http://devsay.com'>devsay</a>.
-            &nbsp;Posted at <a href='http://devsay.com'><a href="http://devsay.com">http://devsay.com</a></a>
-            </p></p>
+            &nbsp;Posted at <a href='http://devsay.com'>http://devsay.com</a>
+            </p>
+
 </div>
   
   
@@ -231,7 +263,7 @@ NSLocationWhenInUseUsageDescription 这里可以自定义对用户的提示。
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - devsay -
+  Copyright &copy; 2015 - devsay -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

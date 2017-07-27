@@ -1,0 +1,9 @@
+---
+layout: post
+title: "新起点"
+date: 2014-09-03 20:05:33 +0800
+keywords: 开发者说,扬帆起航,新起点,新梦想,新挑战
+comments: true
+categories: 
+---
+开发者说今天正式扬帆起航。新起点、新梦想、新挑战。

@@ -1,0 +1,48 @@
+---
+layout: post
+title: "iOS数组快速排序"
+date: 2014-10-08 16:48:38 +0800
+comments: true
+keywords: iOS8,NSComparator,NSSortDescriptor,sort,NSArray
+categories: 
+---
+
+对数组元素排序是使用任何编程语言都会遇到的一个问题，其中大部分已经提供了一些很方便的排序方法供我们使用，那么iOS开发中有哪些方法可以让我们实现对数组元素快速排序呢？
+
+先定义一个数组，然后对其中元素进行排序：
+
+NSArray *originalArray = [NSArray arrayWithObjects:[NSNumbernumberWithInt:5],
+                              [NSNumber numberWithInt:6],
+                              [NSNumber numberWithInt:3],
+                              [NSNumber numberWithInt:4],
+                              [NSNumber numberWithInt:1],
+                              [NSNumber numberWithInt:2],
+                              nil];
+
+方法1:NSComparator
+
+NSArray *sortedArray = [originalArray sortedArrayUsingComparator:^(NSNumber *number1,NSNumber *number2) {
+
+        int val1 = [number1 intValue];
+
+        int val2 = [number2 intValue];
+        
+        if (val1 > val2) {
+            returnNSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    }];
+
+NSLog(@"%@", sortedArray);
+
+
+方法2.NSSortDescriptor
+
+NSSortDescriptor *descriptor = [[NSSortDescriptoralloc]initWithKey:nilascending:YES];
+    
+NSArray *sortArray = [NSArrayarrayWithObjects:descriptor,nil];
+
+NSArray *sortedArray = [originalArray sortedArrayUsingDescriptors:sortArray];
+    
+NSLog(@"%@", sortedArray);
